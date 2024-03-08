@@ -1,15 +1,24 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { IInfo, IRandomUser } from "../utils/types";
 
+interface IPaginations {
+  rows: number;
+  first: number;
+  pageSize: number;
+  page: number;
+  total: number;
+}
 type AssesmentState = {
   randomUsers: IRandomUser[] | [];
   info: IInfo;
+  pagination: IPaginations;
 };
 
 // Action types
 export const actionTypes = {
   SET_RANDOM_USERS: "SET_RANDOM_USERS",
   SET_INFO: "SET_INFO",
+  SET_PAGINATION: "SET_PAGINATION",
 } as const;
 
 export type Action = {
@@ -24,9 +33,15 @@ const contextReducer = (
   switch (action.type) {
     case actionTypes.SET_RANDOM_USERS:
       return { ...state, randomUsers: action.payload as IRandomUser[] };
-
     case actionTypes.SET_INFO:
-      return { ...state, info: action.payload as IInfo };
+      const payload = action.payload as IInfo;
+      return { ...state, info: { ...state.info, ...payload } as IInfo };
+    case actionTypes.SET_PAGINATION:
+      const pagination = action.payload as IPaginations;
+      return {
+        ...state,
+        pagination: { ...state.pagination, ...pagination } as IPaginations,
+      };
 
     default:
       return state;
@@ -37,9 +52,16 @@ const initialAssesmentState: AssesmentState = {
   randomUsers: [],
   info: {
     seed: "",
-    results: 0,
+    results: 100,
     page: 1,
     version: "",
+  },
+  pagination: {
+    first: 10,
+    rows: 10,
+    page: 0, // current page number
+    pageSize: 5, // no of showing result
+    total: 100,
   },
 };
 

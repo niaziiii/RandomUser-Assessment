@@ -3,15 +3,17 @@ import { useAssessmentContext, actionTypes } from "../../context";
 import useHttp from "./useHttp";
 
 const useInitApp = () => {
-  const { dispatch } = useAssessmentContext();
+  const { state, dispatch } = useAssessmentContext();
   const { getRandomUsers } = useHttp();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
+      const options = state.info;
+
       getRandomUsers(
-        {},
+        { ...options },
         (res) => {
           setLoading(false);
           dispatch({
