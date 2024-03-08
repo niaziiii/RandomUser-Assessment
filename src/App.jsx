@@ -1,21 +1,17 @@
 import RandomUserList from "./components/RandomUserList";
+import UserProfile from "./components/UserProfile";
 import LoadingSpinner from "./components/common/LoadingSpinner";
+import { useAssessmentContext } from "./context";
 import useInitApp from "./utils/customHooks/useInitApp";
 
 function App() {
   const { loading } = useInitApp();
+  const { state } = useAssessmentContext();
+  const { activeUser } = state;
 
   if (loading) return <LoadingSpinner />;
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="pt-[10vh] w-[95%] lg:w-[80%] m-auto">
-        <h1 className="text-center text-4xl capitalize font-semibold">
-          Assesment test
-        </h1>
-        <RandomUserList />
-      </div>
-    </div>
-  );
+  if (activeUser) return <UserProfile />;
+  return <RandomUserList />;
 }
 
 export default App;

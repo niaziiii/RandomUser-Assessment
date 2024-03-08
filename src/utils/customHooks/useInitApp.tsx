@@ -5,7 +5,7 @@ import useHttp from "./useHttp";
 const useInitApp = () => {
   const { state, dispatch } = useAssessmentContext();
   const { getRandomUsers } = useHttp();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {

@@ -17,8 +17,6 @@ const Pagination = () => {
       pageSize: event.rows,
     };
 
-    console.log({ newQuery });
-
     dispatch({ type: actionTypes.SET_PAGINATION, payload: newQuery });
   };
 
@@ -29,7 +27,7 @@ const Pagination = () => {
           <Paginator
             first={paginationData.first}
             rows={paginationData.rows}
-            totalRecords={paginationData.total}
+            totalRecords={state.users.length}
             rowsPerPageOptions={[5, 10, 20, 30]}
             onPageChange={_onPageChange}
             pt={Tailwind.paginator}
@@ -57,8 +55,7 @@ const Tailwind = {
         " ",
         {
           "cursor-default pointer-events-none opacity-60": context.disabled,
-          "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)]":
-            !context.disabled,
+          "focus:outline-none focus:outline-offset-0": !context.disabled,
         }
       ),
     }),
@@ -70,8 +67,7 @@ const Tailwind = {
         " ",
         {
           "cursor-default pointer-events-none opacity-60": context.disabled,
-          "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)]":
-            !context.disabled,
+          "focus:outline-none focus:outline-offset-0": !context.disabled,
         }
       ),
     }),
@@ -83,8 +79,7 @@ const Tailwind = {
         " ",
         {
           "cursor-default pointer-events-none opacity-60": context.disabled,
-          "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)]":
-            !context.disabled,
+          "focus:outline-none focus:outline-offset-0": !context.disabled,
         }
       ),
     }),
@@ -96,20 +91,19 @@ const Tailwind = {
         " ",
         {
           "cursor-default pointer-events-none opacity-60": context.disabled,
-          "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)]":
-            !context.disabled,
+          "focus:outline-none focus:outline-offset-0": !context.disabled,
         }
       ),
     }),
     pagebutton: ({ context }) => ({
       className: classNames(
         "relative inline-flex items-center justify-center user-none overflow-hidden leading-none",
-        "border-0 text-gray-500 min-w-[3rem] h-12 m-[0.143rem] rounded-md",
+        "border-0 text-gray-500 min-w-[3rem] h-10 m-[0.143rem] rounded-md",
         "transition duration-200",
-        "dark:border-red-300  ", // Dark Mode
         "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(255, 255, 255, 1),0_0_0_0.2rem_rgba(191,219,254,1)]",
         {
-          "bg-white border-dotted border-back text-red-700": context.active,
+          "bg-white border-2 border-dashed border-gray-400 text-black font-bold ":
+            context.active,
         }
       ),
     }),
@@ -173,7 +167,7 @@ const Tailwind = {
         className: classNames(
           "font-sans text-base text-gray-600 p-3 m-0 rounded-md apperance-none",
           "block whitespace-nowrap overflow-hidden flex-auto w-[1%] cursor-pointer text-ellipsis border border-gray-300 pr-0",
-          "focus:outline-none focus:outline-offset-0 focus:shadow-[0_0_0_0.2rem_rgba(191,219,254,1)] focus:border-red-300",
+          "focus:outline-none focus:outline-offset-0 focus:border-red-300",
           "  dark:bg-gray-950 dark:border-red-900/40",
           "m-0 flex-auto max-w-[3rem]"
         ),
