@@ -7,12 +7,16 @@ import Pagination from "../common/Pagination";
 
 const RandomUserList = () => {
   const { state } = useAssessmentContext();
-  const { randomUsers } = state;
+  const { pagination } = state;
+  const { first, rows } = pagination;
+  const { users } = state;
+  const slicedUsers = users.slice(first, first + rows);
+
   return (
     <div>
       <QueryUser />
       <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-x-10 gap-y-0">
-        {randomUsers.slice(0, 6)?.map((user: IRandomUser, i: number) => {
+        {slicedUsers?.map((user: IRandomUser, i: number) => {
           return <UserCard user={user} key={i} />;
         })}
       </div>

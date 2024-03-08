@@ -72,3 +72,10 @@ export interface IResponse {
   results: IRandomUser[];
   info: IInfo;
 }
+export interface IPaginations {
+  rows: number;
+  first: number;
+  page: number;
+  total: number;
+  pageCount: number;
+}

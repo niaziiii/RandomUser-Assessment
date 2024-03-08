@@ -21,6 +21,10 @@ const useInitApp = () => {
             payload: res.results,
           });
           dispatch({
+            type: actionTypes.SET_USERS,
+            payload: res.results,
+          });
+          dispatch({
             type: actionTypes.SET_INFO,
             payload: res.info,
           });

@@ -1,15 +1,9 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { IInfo, IRandomUser } from "../utils/types";
+import { IInfo, IPaginations, IRandomUser } from "../utils/types";
 
-interface IPaginations {
-  rows: number;
-  first: number;
-  pageSize: number;
-  page: number;
-  total: number;
-}
 type AssesmentState = {
   randomUsers: IRandomUser[] | [];
+  users: IRandomUser[] | [];
   info: IInfo;
   pagination: IPaginations;
 };
@@ -17,6 +11,7 @@ type AssesmentState = {
 // Action types
 export const actionTypes = {
   SET_RANDOM_USERS: "SET_RANDOM_USERS",
+  SET_USERS: "SET_USERS",
   SET_INFO: "SET_INFO",
   SET_PAGINATION: "SET_PAGINATION",
 } as const;
@@ -33,6 +28,8 @@ const contextReducer = (
   switch (action.type) {
     case actionTypes.SET_RANDOM_USERS:
       return { ...state, randomUsers: action.payload as IRandomUser[] };
+    case actionTypes.SET_USERS:
+      return { ...state, users: action.payload as IRandomUser[] };
     case actionTypes.SET_INFO:
       const payload = action.payload as IInfo;
       return { ...state, info: { ...state.info, ...payload } as IInfo };
@@ -50,6 +47,7 @@ const contextReducer = (
 
 const initialAssesmentState: AssesmentState = {
   randomUsers: [],
+  users: [],
   info: {
     seed: "",
     results: 100,
@@ -57,11 +55,11 @@ const initialAssesmentState: AssesmentState = {
     version: "",
   },
   pagination: {
-    first: 10,
-    rows: 10,
+    first: 0,
+    rows: 5, // no of showing result
     page: 0, // current page number
-    pageSize: 5, // no of showing result
     total: 100,
+    pageCount: 0,
   },
 };
 

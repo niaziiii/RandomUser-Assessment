@@ -6,13 +6,18 @@ import { useAssessmentContext, actionTypes } from "../../../context";
 const Pagination = () => {
   const { state, dispatch } = useAssessmentContext();
   const { pagination: paginationData } = state;
+
   const _onPageChange = (event: PaginatorPageChangeEvent) => {
     const newQuery = {
+      ...state.pagination,
       rows: event.rows,
       first: event.first,
       page: event.page,
       pageCount: event.pageCount,
+      pageSize: event.rows,
     };
+
+    console.log({ newQuery });
 
     dispatch({ type: actionTypes.SET_PAGINATION, payload: newQuery });
   };
@@ -25,7 +30,7 @@ const Pagination = () => {
             first={paginationData.first}
             rows={paginationData.rows}
             totalRecords={paginationData.total}
-            rowsPerPageOptions={[10, 20, 30]}
+            rowsPerPageOptions={[5, 10, 20, 30]}
             onPageChange={_onPageChange}
             pt={Tailwind.paginator}
           />
