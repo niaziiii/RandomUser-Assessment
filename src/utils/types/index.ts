@@ -79,3 +79,9 @@ export interface IPaginations {
   total: number;
   pageCount: number;
 }
+export type IGender = null | "Male" | "Female";
+
+export interface IOptions {
+  name: string;
+  code: string;
+}

@@ -1,10 +1,17 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { IInfo, IPaginations, IRandomUser } from "../utils/types";
+import {
+  IGender,
+  IInfo,
+  IOptions,
+  IPaginations,
+  IRandomUser,
+} from "../utils/types";
 
 type AssesmentState = {
   randomUsers: IRandomUser[] | [];
   users: IRandomUser[] | [];
   activeUser: IRandomUser | null;
+  gender: null | IOptions;
   info: IInfo;
   pagination: IPaginations;
   query: string;
@@ -14,6 +21,7 @@ type AssesmentState = {
 export const actionTypes = {
   SET_RANDOM_USERS: "SET_RANDOM_USERS",
   SET_USERS: "SET_USERS",
+  SET_GENDER: "SET_GENDER",
   SET_INFO: "SET_INFO",
   SET_PAGINATION: "SET_PAGINATION",
   SET_QUERY: "SET_QUERY",
@@ -48,6 +56,11 @@ const contextReducer = (
         ...state,
         query: action.payload as string,
       };
+    case actionTypes.SET_GENDER:
+      return {
+        ...state,
+        gender: action.payload as IOptions | null,
+      };
 
     case actionTypes.SET_ACTIVE_USER:
       return {
@@ -64,6 +77,7 @@ const initialAssesmentState: AssesmentState = {
   randomUsers: [],
   users: [],
   activeUser: null,
+  gender: null,
   info: {
     seed: "",
     results: 100,

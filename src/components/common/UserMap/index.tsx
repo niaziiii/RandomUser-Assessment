@@ -5,14 +5,14 @@ import { useAssessmentContext } from "../../../context";
 import { IRandomUser } from "../../../utils/types";
 
 const MapWithFlags = ({ locations }) => {
-  const center = [33.6461824, 73.1668406];
+  const center: any = [33.6461824, 73.1668406];
   const { state } = useAssessmentContext();
 
   const activeUser = state.activeUser as IRandomUser;
   return (
-    <div className="h-[80vh] w-full overflow-hidden">
+    <div className="h-[80vh] w-full overflow-hidden pb-1">
       <MapContainer
-        center={center}
+        center={center as unknown as any}
         zoom={13}
         scrollWheelZoom={true}
         style={{ minHeight: "100%", minWidth: "100%" }}

@@ -14,13 +14,13 @@ const UserCard = ({ user }: { user: IRandomUser }) => {
 
   return (
     <div className="cursor-pointer" onClick={showUserProfile}>
-      <div className="w-full flex items-center justify-center ">
+      <div className="w-full flex items-center justify-center overflow-hidden ">
         <div className="relative w-full my-4 flex flex-col items-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6 px-4 py-4 border-2 border-dashed border-gray-400 shadow-lg rounded-lg bg-white">
-          <span className="absolute text-xs font-medium top-0 left-0 rounded-br-lg rounded-tl-lg px-2 py-1 bg-primary-100 border-gray-400  border-b-2 border-r-2 border-dashed  ">
+          <span className="absolute capitalize text-xs font-medium top-0 left-0 rounded-br-lg rounded-tl-lg px-2 py-1 bg-primary-100 border-gray-400  border-b-2 border-r-2 border-dashed  ">
             {gender}
           </span>
 
-          <div className="w-full flex justify-center sm:justify-start sm:w-auto">
+          <div className=" flex justify-center sm:justify-start sm:w-auto w-20 min-w-20">
             <img
               className="object-cover w-20 flex justify-center items-center h-20 mt-3 mr-3 rounded-full"
               src={picture.medium}
